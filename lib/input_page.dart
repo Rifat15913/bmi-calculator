@@ -17,6 +17,7 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class _InputPageState extends State<InputPage> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
             Expanded(
               child: Row(
@@ -69,6 +71,42 @@ class _InputPageState extends State<InputPage> {
             Expanded(
               child: ReusableCard(
                 backgroundColor: kActiveCardColor,
+                cardChild: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'HEIGHT',
+                      style: kLabelTextStyle,
+                    ),
+                    Row(
+                      textBaseline: TextBaseline.alphabetic,
+                      crossAxisAlignment: CrossAxisAlignment.baseline,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text(
+                          height.toString(),
+                          style: kNumberTextStyle,
+                        ),
+                        Text(
+                          'cm',
+                          style: kLabelTextStyle,
+                        ),
+                      ],
+                    ),
+                    Slider(
+                      onChanged: (double value) {
+                        setState(() {
+                          height = value.toInt();
+                        });
+                      },
+                      activeColor: kSliderActiveColor,
+                      inactiveColor: kSliderInactiveColor,
+                      value: height.toDouble(),
+                      min: 120.0,
+                      max: 220.0,
+                    ),
+                  ],
+                ),
               ),
             ),
             Expanded(
