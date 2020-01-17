@@ -6,6 +6,7 @@ import 'reusable_card.dart';
 
 const BOTTOM_CONTAINER_HEIGHT = 80.0;
 const ACTIVE_CARD_COLOR = Color(0xFF1D1E33);
+const INACTIVE_CARD_COLOR = Color(0xFF111328);
 const BOTTOM_CONTAINER_COLOR = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
@@ -14,6 +15,28 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = INACTIVE_CARD_COLOR;
+  Color femaleCardColor = INACTIVE_CARD_COLOR;
+
+  // 1 = male, 2 = female
+  void updateCardColor(int gender) {
+    if (gender == 1) {
+      if (maleCardColor == INACTIVE_CARD_COLOR) {
+        maleCardColor = ACTIVE_CARD_COLOR;
+        femaleCardColor = INACTIVE_CARD_COLOR;
+      } else {
+        maleCardColor = INACTIVE_CARD_COLOR;
+      }
+    } else {
+      if (femaleCardColor == INACTIVE_CARD_COLOR) {
+        femaleCardColor = ACTIVE_CARD_COLOR;
+        maleCardColor = INACTIVE_CARD_COLOR;
+      } else {
+        femaleCardColor = INACTIVE_CARD_COLOR;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,20 +51,34 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: <Widget>[
                   Expanded(
-                    child: ReusableCard(
-                      backgroundColor: ACTIVE_CARD_COLOR,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.mars,
-                        label: 'MALE',
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateCardColor(1);
+                        });
+                      },
+                      child: ReusableCard(
+                        backgroundColor: maleCardColor,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.mars,
+                          label: 'MALE',
+                        ),
                       ),
                     ),
                   ),
                   Expanded(
-                    child: ReusableCard(
-                      backgroundColor: ACTIVE_CARD_COLOR,
-                      cardChild: IconContent(
-                        icon: FontAwesomeIcons.venus,
-                        label: 'FEMALE',
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          updateCardColor(2);
+                        });
+                      },
+                      child: ReusableCard(
+                        backgroundColor: femaleCardColor,
+                        cardChild: IconContent(
+                          icon: FontAwesomeIcons.venus,
+                          label: 'FEMALE',
+                        ),
                       ),
                     ),
                   ),
