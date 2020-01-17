@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/button_content.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -18,6 +19,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender;
   int height = 180;
+  int weight = 60;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -127,11 +130,45 @@ class _InputPageState extends State<InputPage> {
                   Expanded(
                     child: ReusableCard(
                       backgroundColor: kActiveCardColor,
+                      cardChild: ButtonContent(
+                        title: 'WEIGHT',
+                        quantity: weight.toString(),
+                        leftIcon: FontAwesomeIcons.minus,
+                        onLeftPressCallback: () {
+                          setState(() {
+                            weight--;
+                          });
+                        },
+                        rightIcon: FontAwesomeIcons.plus,
+                        onRightPressCallback: () {
+                          setState(() {
+                            weight++;
+                          });
+                        },
+                        buttonBackgroundColor: kRoundIconButtonBackgroundColor,
+                      ),
                     ),
                   ),
                   Expanded(
                     child: ReusableCard(
                       backgroundColor: kActiveCardColor,
+                      cardChild: ButtonContent(
+                        title: 'AGE',
+                        quantity: age.toString(),
+                        leftIcon: FontAwesomeIcons.minus,
+                        onLeftPressCallback: () {
+                          setState(() {
+                            age--;
+                          });
+                        },
+                        rightIcon: FontAwesomeIcons.plus,
+                        onRightPressCallback: () {
+                          setState(() {
+                            age++;
+                          });
+                        },
+                        buttonBackgroundColor: kRoundIconButtonBackgroundColor,
+                      ),
                     ),
                   ),
                 ],

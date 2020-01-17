@@ -8,6 +8,7 @@ const kSliderActiveColor = Colors.white;
 const kSliderInactiveColor = Color(0xFF8D8E98);
 const kSliderThumbColor = Color(0xFFEB1555);
 const kSliderOverlayColor = Color(0x29EB1555);
+const kRoundIconButtonBackgroundColor = Color(0xFF4C4F5E);
 
 const kLabelTextStyle = TextStyle(
   fontSize: 18.0,
