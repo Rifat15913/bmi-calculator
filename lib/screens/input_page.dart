@@ -186,8 +186,7 @@ class _InputPageState extends State<InputPage> {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) =>
-                            ResultsPage(
+                        builder: (context) => ResultsPage(
                               bmiResult: calculator.calculateBMI(),
                               resultText: calculator.getResult(),
                               interpretation: calculator.getInterpretation(),
